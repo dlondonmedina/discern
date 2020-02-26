@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+
+   <!-- physics and other extras -->
+   <script src="js/aframe-environment-component.min.js"></script>
+   <script src="js/aframe-extras.loaders.min.js"></script>
+   <script src="js/arrow.js"></script>
+   <title>Document</title>
+</head>
+<body>
+   <script>
+      AFRAME.registerComponent('elevator', {
+         schema: {
+            position: {default: '0 2.5 3'}
+         },
+
+         init: function () {
+            var data = this.data;
+            var el = this.el;
+
+            el.addEventListener('click', function () {
+               var cam = document.querySelector('#player');
+               cam.setAttribute('position', data.position);
+            });
+         }
+      });
+      
+      /* Color */
+      AFRAME.registerComponent('change-color-on-hover', {
+         schema: {
+            color: { default: 'red' }
+         },
+
+         init: function () {
+            var data = this.data;
+            var el = this.el;
+            var defaultColor = el.getAttribute('material').color;
+
+            el.addEventListener('mouseenter', function () {
+               el.setAttribute('color', data.color);
+            });
+
+            el.addEventListener('mouseleave', function () {
+               el.setAttribute('color', defaultColor);
+            });
+         }
+      });
+   </script>
+   <a-scene physics='debug:true;' stats>
+      <!-- Assets -->
+      <a-asset-item id='architecture' src='models/wizlib/scene.gltf'></a-asset-item>
+
+      <!-- /Assets  -->
+         <!-- Camera -->
+         <a-camera 
+            id="player"
+            universal-controls
+            position='0 2.5 3'
+            >
+            <a-cursor
+               color="#FFF"
+               position="0 0 -.5"
+            ></a-cursor>
+         </a-camera>
+         <!-- /Camera  -->
+         <!-- Environment -->
+         <a-entity gltf-model='#architecture' position='0 .5 0'></a-entity>
+         <a-entity environment="preset: forest; grid: none;" position='0 0 0'></a-entity>
+         <!-- Stair Controls -->
+         <!-- Up -->
+         <a-cone 
+            position='5.9 2.5 0.15' 
+            color='yellow' 
+            metalness='0.5' 
+            radius-bottom='0.25' 
+            elevator='position: 12.5 16.5 3' 
+            change-color-on-hover='color: green'
+         ></a-cone>
+         <!-- /Up -->
+         <!-- Down -->
+         <a-cone 
+            position='11 16.0 1' 
+            rotation='0 0 180' 
+            color='yellow' 
+            metalness='0.5' 
+            radius-bottom='0.25' 
+            elevator='position: 5 2.5 -3'
+            change-color-on-hover='color: green'
+         ></a-cone>
+         <!-- /Down -->
+
+         <!-- <a-box id="sound-clips" position='0 2 -4' height="6" width="6" depth=".5" nav-mesh color="gray"></a-box>
+         <a-sphere id="start" position='-2 0 -3' color='green' metalness='0.5' radius='0.5'></a-sphere>
+         <a-sphere id="stop" position='2 0 -3' color='red' metalness='0.5' radius='0.5'></a-sphere> -->
+      
+</body>
+</html>
