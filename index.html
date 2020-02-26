@@ -9,11 +9,55 @@
    <!-- physics and other extras -->
    <script src="js/aframe-environment-component.min.js"></script>
    <script src="js/aframe-extras.loaders.min.js"></script>
-   <script src="js/arrow.js"></script>
    <title>Document</title>
 </head>
 <body>
    <script>
+      /* WebSpeech */
+      const dialogue = {
+         "introduction": "Welcome to the Ignatian Pedagogical Paradigm in VR. In this app you will go through the practice of Discernment. The goal of this process is to help you make better decisions, and more importantly, align your decision making with the will of God.",
+         "greeting": "Well met! I am Virgil 9000, and I will be guiding you through this experience today. As you answer the questions, I will record the answers. Click the green ball in the center to start recording. You can read them by clicking on the silver ball controller to your left.",
+         "prayers": [
+            "God of silence and God of all sound, help me listen. Help me to do the deep listening to the sounds of my soul, waiting to hear your soft voice calling me deeper into you. Give me attentive ears that begin to separate the noise from the sounds that are you; you who have been speaking to me and through me my whole life, for so long that you can seem like background noise. Today help me hear you anew",
+            "Today, O God of all days, give me an experience of your heart. Draw me deep into your very being, into the core of your love for me, others, and the world. Give me a glimpse of others the way you see others: loving them, forgiving them, and delighting in the way they give glory to God through their very existence. Help me to discern out of the open place of deep affection so that I too might be a useful vessel of your love in the world.",
+            "Almighty God, author of my life, help me learn to read what you have written on my heart. Give me discerning eyes and an untiring spirit to look within me in order to understand how to reach outside of me. And once I have begun to read you aright, give me the generosity to help others read you, to sound you out one letter, one word of radical giving at a time."
+         ],
+         "identify-decision": "Describe in a few words the decision that must be made or the issue that must be resolved. The issue should be practical and real. It needs to be in you right to make this decision, and you must have the necessary information to make an intelligent decision.",
+         "formulate-proposal": "Now that you have described the decision, you'll need to formulate this into a concrete, positive choice. You should state it as an X versus not X or X versus Y proposal. For example: I will stay in my current job as a discernment bot or I will accept a job offer from Amazon to deliver packages. Please click record when you are ready.",
+         "passage-intro": "In preparation for our prayer, please take a moment to listen to the following Scripture passages.",
+         "passages": [
+            "And the apostles said to the Lord, 'Incrase our faith.' The Lord replied, 'If you have faith the size of a mustard seed, you would say to [this] mulberry tree, Be uprooted and planted in the see, and it would obay you.'",
+            "Then he made the disciples get into the boat and precede him to the other side, while he dismissed the crowds. After doing so, he went up on the mountain by himself to pray. When it was evening he was there alone. Meanwhile the boat, already a few miles offshore, was being tossed about by the waves, for the wind was against it. During the fourth watch of the night, he came toward them, walking on the sea. When the disciples saw him walking on the sea they were terrified. It is a ghost, they said, and they cried out in fear. At once Jesus spoke to them, Take courage, it is I; do not be afraid. Peter said to him in reply, Lord, if it is you, command me to come to you on the water. He said, Come. Peter got out of the boat and began to walk on the water toward Jesus. But when he saw how strong the wind was he became frightened; and, beginning to sink, he cried out, Lord, save me!  Immediately Jesus stretched out his hand and caught him, and said to him, O you of little faith, why did you doubt? After they got into the boat, the wind died down. Those who were in the boat did him homage, saying, Truly, you are the Son of God.",
+            "You are the salt of the earth. But if salt loses its taste, with what can it be seasoned? It is no longer good for anything but to be thrown out and trampled underfoot. You are the light of the world. A city set on a mountain cannot be hidden. Nor do they light a lamp and then put it under a bushel basket; it is set on a lampstand, where it gives light to all in the house. Just so, your light must shine before others, that they may see your good deeds and glorify your heavenly Father.",
+            "Everyone who listens to these words of mine and acts on them will be like a wise man who built his house on rock. The rain fell, the floods came, and the winds blew and buffeted the house. But it did not collapse; it had been set solidly on rock.",
+            "And he said to them, Suppose one of you has a friend to whom he goes at midnight and says, Friend, lend me three loaves of bread, for a friend of mine has arrived at my house from a journey and I have nothing to offer him, and he says in reply from within, Do not bother me; the door has already been locked and my children and I are already in bed. I cannot get up to give you anything. I tell you, if he does not get up to give him the loaves because of their friendship, he will get up to give him whatever he needs because of his persistence. And I tell you, ask and you will receive; seek and you will find; knock and the door will be opened to you. For everyone who asks, receives; and the one who seeks, finds; and to the one who knocks, the door will be opened. What father among you would hand his son a snake when he asks for a fish? Or hand him a scorpion when he asks for an egg? If you then, who are wicked, know how to give good gifts to your children, how much more will the Father in heaven give the holy Spirit to those who ask him?"
+         ],
+         "questioning": ""
+
+      };
+
+      AFRAME.registerComponent('speaker', {
+         schema: {
+            dialogue: {
+               default: '',
+            }
+         },
+
+         init: function () {
+            var data = this.data;
+            var el = this.el;
+            var utterance = new SpeechSynthesisUtterance();
+            utterance.lang = 'en-US';
+            utterance.pitch = .75;
+
+            el.addEventListener('click', function() {
+               utterance.text = dialogue[data.text];
+               speechSynthesis.speak(utterance);
+            });
+         }
+      });
+
+      /* Elevator */
       AFRAME.registerComponent('elevator', {
          schema: {
             position: {default: '0 2.5 3'}
@@ -67,6 +111,7 @@
                position="0 0 -.5"
             ></a-cursor>
          </a-camera>
+         
          <!-- /Camera  -->
          <!-- Environment -->
          <a-entity gltf-model='#architecture' position='0 .5 0'></a-entity>
@@ -93,6 +138,16 @@
             change-color-on-hover='color: green'
          ></a-cone>
          <!-- /Down -->
+         <!-- /Stair Controls -->
+        
+         <!-- Introduction -->
+         <a-sphere
+            position='-0.1 2.5 0'
+            material='transparent: true; opacity: 0.1;'
+            radius=.4
+            speaker='text: introduction'
+         ></a-sphere>
+         <!-- /Introduction -->
 
          <!-- <a-box id="sound-clips" position='0 2 -4' height="6" width="6" depth=".5" nav-mesh color="gray"></a-box>
          <a-sphere id="start" position='-2 0 -3' color='green' metalness='0.5' radius='0.5'></a-sphere>
