@@ -137,11 +137,11 @@
             var data = this.data;
             var el = this.el;
             
-            el.addEventListener('click', function () {
-               var cam = document.querySelector('#rig');
-               cam.setAttribute('position', data.position);
-            });
-            el.addEventListener('triggerdown', function (e) {
+            // el.addEventListener('click', function () {
+            //    var cam = document.querySelector('#rig');
+            //    cam.setAttribute('position', data.position);
+            // });
+            el.addEventListener('triggerup', function (e) {
                var cam = document.querySelector('#rig');
                cam.setAttribute('position', data.position);
             });
@@ -184,8 +184,8 @@
                <a-entity camera id='player' position='0 2.5 0' look-controls='pointerLockEnabled: true'>
                   <a-cursor color='#FFF' position='0 0 -.5'></a-cursor>
                </a-entity>
-               <a-entity oculus-touch-controls="hand: left"></a-entity>
-               <a-entity oculus-touch-controls="hand: right"></a-entity>
+               <a-entity laser-controls oculus-touch-controls="hand: left"></a-entity>
+               <a-entity laser-controls oculus-touch-controls="hand: right"></a-entity>
             </a-entity>
          <!-- /Camera  -->
 
