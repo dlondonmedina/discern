@@ -137,7 +137,7 @@
             var el = this.el;
 
             el.addEventListener('click', function () {
-               var cam = document.querySelector('#rig');
+               var cam = document.querySelector('#player');
                cam.setAttribute('position', data.position);
             });
          }
@@ -175,24 +175,19 @@
 
       <!-- /Assets  -->
          <!-- Camera -->
-         <a-entity 
-            id='rig' 
-            position='17.5 2.5 -18' 
-            rotation='0 135 0' 
-            look-controls 
-            movement-controls>
-            <a-entity id='camera' camera>
+         
+            <a-camera id='player' position='17.5 2.5 -18' movement-controls>
                <a-cursor color='#FFF' position='0 0 -.5'></a-cursor>
-            </a-entity>
-            <a-entity gltf-model='#left' oculus-touch-controls='hand: left' position='.25 -.15 -.5'></a-entity>
-            <a-entity gltf-model='#right' oculus-touch-controls='hand: right'position='-.25 -.15 -.5'></a-entity>
-         </a-entity>
+               <a-entity gltf-model='#left' oculus-touch-controls='hand: left' position='.25 -.15 -.5'></a-entity>
+               <a-entity gltf-model='#right' oculus-touch-controls='hand: right' position='-.25 -.15 -.5'></a-entity>
+            </a-camera>
+    
          <!-- <a-camera 
             id="player"
             universal-controls
             position='18 2.5 -17.75'
             rotation='0 -180 0'
-            >
+            >ws
             <a-cursor
                color="#FFF"
                position="0 0 -.5"

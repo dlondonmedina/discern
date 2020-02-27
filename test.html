@@ -13,17 +13,7 @@
 </head>
 <body>
    <script>
-      AFRAME.registerComponent('record', {
-         schema: { type: 'string', default: 'recording.wav' },
-         
-         init: function () {
-            this.el.addEventListener('start', this.start.bind(this));
-            this.el.addEventListener('stop', this.stop.bind(this));
-
-         },
-
-         
-      })
+      
    </script>
    <a-scene physics='debug:true;' stats>
       <!-- Camera -->
@@ -39,6 +29,7 @@
       </a-camera>
    
    <!-- /Camera  -->
+   <a-sphere color='blue' record='test.ogg' position='0 2.5 -3'></a-sphere>
    </a-scene>
 </body>
 </html>
