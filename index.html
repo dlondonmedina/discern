@@ -163,7 +163,7 @@
 
       <!-- /Assets  -->
          <!-- Camera -->
-         <a-entity id='rig' position='17.5 2.5 -18' rotation='0 135 0' wasd-controls universal-controls>
+         <a-entity id='rig' position='17.5 2.5 -18' rotation='0 135 0' look-controls wasd-controls universal-controls>
             <a-entity id='camera' camera>
                <a-cursor color='#FFF' position='0 0 -.5'></a-cursor>
             </a-entity>
@@ -190,7 +190,7 @@
          <a-entity gltf-model='#monk' position = '13.25 .25 -17' scale= '2 2 2' rotation='0 130 0' speaker='text: introduction'></a-entity>
          <!-- /Monk -->
          <!-- Enter -->
-         <a-sphere position='14.5 2.5 -15' color='blue' radius=.5></a-sphere>
+         <a-sphere position='14.5 2.5 -15' color='blue' radius=.5 elevator='position: 14 2.5 -10'></a-sphere>
          <!-- Stair Controls -->
          <!-- Up -->
          <a-cone 
