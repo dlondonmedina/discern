@@ -97,7 +97,6 @@
          "prayer3": "Almighty God, author of my life, help me learn to read what you have written on my heart. Give me discerning eyes and an untiring spirit to look within me in order to understand how to reach outside of me. And once I have begun to read you aright, give me the generosity to help others read you, to sound you out one letter, one word of radical giving at a time.",
          "identify-decision": "Describe in a few words the decision that must be made or the issue that must be resolved. The issue should be practical and real. It needs to be in you right to make this decision, and you must have the necessary information to make an intelligent decision.",
          "formulate-proposal": "Now that you have described the decision, you'll need to formulate this into a concrete, positive choice. You should state it as an X versus not X or X versus Y proposal. For example: I will stay in my current job as a discernment bot or I will accept a job offer from Amazon to deliver packages. Please click record when you are ready.",
-         "passage-intro": "In preparation for our prayer, please take a moment to listen to the following Scripture passages.",
          "passage1": "And the apostles said to the Lord, 'Incrase our faith.' The Lord replied, 'If you have faith the size of a mustard seed, you would say to [this] mulberry tree, Be uprooted and planted in the see, and it would obay you.'",
          "passage2": "Then he made the disciples get into the boat and precede him to the other side, while he dismissed the crowds. After doing so, he went up on the mountain by himself to pray. When it was evening he was there alone. Meanwhile the boat, already a few miles offshore, was being tossed about by the waves, for the wind was against it. During the fourth watch of the night, he came toward them, walking on the sea. When the disciples saw him walking on the sea they were terrified. It is a ghost, they said, and they cried out in fear. At once Jesus spoke to them, Take courage, it is I; do not be afraid. Peter said to him in reply, Lord, if it is you, command me to come to you on the water. He said, Come. Peter got out of the boat and began to walk on the water toward Jesus. But when he saw how strong the wind was he became frightened; and, beginning to sink, he cried out, Lord, save me!  Immediately Jesus stretched out his hand and caught him, and said to him, O you of little faith, why did you doubt? After they got into the boat, the wind died down. Those who were in the boat did him homage, saying, Truly, you are the Son of God.",
          "passage3": "You are the salt of the earth. But if salt loses its taste, with what can it be seasoned? It is no longer good for anything but to be thrown out and trampled underfoot. You are the light of the world. A city set on a mountain cannot be hidden. Nor do they light a lamp and then put it under a bushel basket; it is set on a lampstand, where it gives light to all in the house. Just so, your light must shine before others, that they may see your good deeds and glorify your heavenly Father.",
@@ -172,29 +171,15 @@
 
       <!-- /Assets  -->
          <!-- Camera -->
-            <a-entity id='rig' position='17.5 0 -18' look-controls movement-controls wasd-controls>
+            <a-entity id='rig' position='17.5 0 -18' rotation='0 130 0' look-controls movement-controls wasd-controls>
                <a-camera id='player' position='0 2.5 0'>
                   <a-cursor color='#FFF' position='0 0 -.5'></a-cursor>
                   <a-entity oculus-touch-controls="hand: left"></a-entity>
                   <a-entity oculus-touch-controls="hand: right"></a-entity>
                </a-camera>
             </a-entity>
-            <!-- <a-entity gltf-model='#left' laser-controls hand-controls='hand: left' position='17.0 0 -18'></a-entity>
-            <a-entity gltf-model='#right' laser-controls hand-controls='hand: right' position='17.5 0 -18'></a-entity> -->
-            
-         <!-- <a-camera 
-            id="player"
-            universal-controls
-            position='18 2.5 -17.75'
-            rotation='0 -180 0'
-            >ws
-            <a-cursor
-               color="#FFF"
-               position="0 0 -.5"
-            ></a-cursor>
-         </a-camera> -->
-         
          <!-- /Camera  -->
+
          <!-- Environment -->
          <a-entity gltf-model='#architecture' position='0 .5 0'></a-entity>
          <a-entity environment="preset: forest; grid: none;" position='0 0 0'></a-entity>
@@ -203,8 +188,11 @@
          <!-- Monk -->
          <a-entity gltf-model='#monk' position = '13.25 .25 -17' scale= '2 2 2' rotation='0 130 0' speaker='text: introduction'></a-entity>
          <!-- /Monk -->
+
          <!-- Enter -->
          <a-sphere position='14.5 2.5 -15' color='blue' radius=.5 elevator='position: 14 0 -10'></a-sphere>
+         <!-- /Enter -->
+
          <!-- Stair Controls -->
          <!-- Up -->
          <a-cone 
@@ -228,14 +216,23 @@
          ></a-cone>
          <!-- /Down -->
          <!-- /Stair Controls -->
-        
-         <!-- Introduction -->
-         <a-sphere
-            position='-0.1 2.5 0'
-            material='transparent: true; opacity: 0.1;'
-            radius=.4
-            speaker='text: prayer1'
-         ></a-sphere>
-         <!-- /Introduction -->    
+         
+         <!-- Decision -->
+         <a-sphere position='-0.1 2.5 0' material='transparent: true; opacity: 0.1;' radius=.4 speaker='text: identify-decision'>
+         </a-sphere>
+         <a-sphere position='-12 2.5 -12' color='blue' radius=.4 speaker='text: formulate-proposal'></a-sphere>
+         <!-- /Decision -->
+
+         <!-- Prayers -->
+         <a-sphere position='9.5 2.5 7.0' color='blue' radius=.4 speaker='text: prayer2'>
+         </a-sphere>
+         <a-sphere position='16.75 2.5 -.5' color='blue' radius=.4 speaker='text: prayer3'>
+         </a-sphere>
+         <a-sphere position='-0.1 2.5 -14' color='blue' radius=.4 speaker='text: prayer1'></a-sphere>
+         <!-- /Prayers -->  
+
+         <!-- Verses (upstairs) -->
+         <!-- /Verses -->
+
 </body>
 </html>
