@@ -80,7 +80,7 @@
       });
       /* WebSpeech */
       const dialogue = {
-         "introduction": "Welcome to the Ignatian Pedagogical Paradigm in VR. In this app you will go through the practice of Discernment. The goal of this process is to help you make better decisions, and more importantly, align your decision making with the will of God.",
+         "introduction": "Welcome to the Ignatian Pedagogical Paradigm in VR. In this app you will go through the practice of Discernment. The goal of this process is to help you make better decisions. Click the green sphere to begin.",
          "greeting": "Well met! I am Virgil 9000, and I will be guiding you through this experience today. As you answer the questions, I will record the answers. Click the green ball in the center to start recording. You can read them by clicking on the silver ball controller to your left.",
          "prayers": [
             "God of silence and God of all sound, help me listen. Help me to do the deep listening to the sounds of my soul, waiting to hear your soft voice calling me deeper into you. Give me attentive ears that begin to separate the noise from the sounds that are you; you who have been speaking to me and through me my whole life, for so long that you can seem like background noise. Today help me hear you anew",
@@ -128,7 +128,7 @@
             var el = this.el;
 
             el.addEventListener('click', function () {
-               var cam = document.querySelector('#player');
+               var cam = document.querySelector('#rig');
                cam.setAttribute('position', data.position);
             });
          }
@@ -155,27 +155,42 @@
          }
       });
    </script>
-   <a-scene physics='debug:true;' stats>
+   <a-scene physics='debug:true;' stats inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
       <!-- Assets -->
       <a-asset-item id='architecture' src='models/wizlib/scene.gltf'></a-asset-item>
+      <a-asset-item id='monk' src='models/monk/scene.gltf'></a-asset-item>
+
 
       <!-- /Assets  -->
          <!-- Camera -->
-         <a-camera 
+         <a-entity id='rig' position='17.5 2.5 -18' rotation='0 135 0' wasd-controls universal-controls>
+            <a-entity id='camera' camera>
+               <a-cursor color='#FFF' position='0 0 -.5'></a-cursor>
+            </a-entity>
+         </a-entity>
+         <!-- <a-camera 
             id="player"
             universal-controls
-            position='0 2.5 3'
+            position='18 2.5 -17.75'
+            rotation='0 -180 0'
             >
             <a-cursor
                color="#FFF"
                position="0 0 -.5"
             ></a-cursor>
-         </a-camera>
+         </a-camera> -->
          
          <!-- /Camera  -->
          <!-- Environment -->
          <a-entity gltf-model='#architecture' position='0 .5 0'></a-entity>
          <a-entity environment="preset: forest; grid: none;" position='0 0 0'></a-entity>
+         <!-- /Environment -->
+
+         <!-- Monk -->
+         <a-entity gltf-model='#monk' position = '13.25 .25 -17' scale= '2 2 2' rotation='0 130 0' speaker='text: introduction'></a-entity>
+         <!-- /Monk -->
+         <!-- Enter -->
+         <a-sphere position='14.5 2.5 -15' color='blue' radius=.5></a-sphere>
          <!-- Stair Controls -->
          <!-- Up -->
          <a-cone 
