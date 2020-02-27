@@ -129,7 +129,7 @@
       /* Elevator */
       AFRAME.registerComponent('elevator', {
          schema: {
-            position: {default: '0 2.5 3'}
+            position: {default: '17.5 0 -18'}
          },
 
          init: function () {
@@ -137,7 +137,7 @@
             var el = this.el;
 
             el.addEventListener('click', function () {
-               var cam = document.querySelector('#player');
+               var cam = document.querySelector('#rig');
                cam.setAttribute('position', data.position);
             });
          }
@@ -176,14 +176,15 @@
       <!-- /Assets  -->
          <!-- Camera -->
             <a-entity id='rig' position='17.5 0 -18' look-controls movement-controls>
-            <a-camera id='player' position='0 2.0 0'>
+            <a-camera id='player' position='0 2.5 0'>
                <a-cursor color='#FFF' position='0 0 -.5'></a-cursor>
                
             </a-camera>
             </a-entity>
-            <a-entity gltf-model='#left' oculus-touch-controls='hand: left'></a-entity>
-            <a-entity gltf-model='#right' oculus-touch-controls='hand: right'></a-entity>
-    
+            <!-- <a-entity gltf-model='#left' oculus-touch-controls='hand: left'></a-entity>
+            <a-entity gltf-model='#right' oculus-touch-controls='hand: right'></a-entity> -->
+   <a-entity oculus-touch-controls="hand: left"></a-entity>
+   <a-entity oculus-touch-controls="hand: right"></a-entity>
          <!-- <a-camera 
             id="player"
             universal-controls
@@ -206,7 +207,7 @@
          <a-entity gltf-model='#monk' position = '13.25 .25 -17' scale= '2 2 2' rotation='0 130 0' speaker='text: introduction'></a-entity>
          <!-- /Monk -->
          <!-- Enter -->
-         <a-sphere position='14.5 2.5 -15' color='blue' radius=.5 elevator='position: 14 2.5 -10'></a-sphere>
+         <a-sphere position='14.5 2.5 -15' color='blue' radius=.5 elevator='position: 14 0 -10'></a-sphere>
          <!-- Stair Controls -->
          <!-- Up -->
          <a-cone 
@@ -214,7 +215,7 @@
             color='yellow' 
             metalness='0.5' 
             radius-bottom='0.25' 
-            elevator='position: 12.5 16.5 3' 
+            elevator='position: 12.5 14.5 3' 
             change-color-on-hover='color: green'
          ></a-cone>
          <!-- /Up -->
@@ -225,7 +226,7 @@
             color='yellow' 
             metalness='0.5' 
             radius-bottom='0.25' 
-            elevator='position: 5 2.5 -3'
+            elevator='position: 5 0 -3'
             change-color-on-hover='color: green'
          ></a-cone>
          <!-- /Down -->
