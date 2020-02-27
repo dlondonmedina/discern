@@ -136,8 +136,12 @@
          init: function () {
             var data = this.data;
             var el = this.el;
-
+            
             el.addEventListener('click', function () {
+               var cam = document.querySelector('#rig');
+               cam.setAttribute('position', data.position);
+            });
+            el.addEventListener('triggerdown', function () {
                var cam = document.querySelector('#rig');
                cam.setAttribute('position', data.position);
             });
