@@ -137,10 +137,10 @@
             var data = this.data;
             var el = this.el;
             
-            // el.addEventListener('click', function () {
-            //    var cam = document.querySelector('#rig');
-            //    cam.setAttribute('position', data.position);
-            // });
+            el.addEventListener('click', function () {
+               var cam = document.querySelector('#rig');
+               cam.setAttribute('position', data.position);
+            });
             el.addEventListener('triggerup', function (e) {
                var cam = document.querySelector('#rig');
                cam.setAttribute('position', data.position);
@@ -180,12 +180,12 @@
 
       <!-- /Assets  -->
          <!-- Camera -->
-            <a-entity id='rig' position='17.5 0 -18' rotation='0 130 0' movement-controls='' position-listener='' gamepad-controls='' trackpad-controls='' keyboard-controls='' touch-controls=''>
-               <a-entity camera id='player' position='0 2.5 0' look-controls='pointerLockEnabled: true'>
+            <a-entity id='rig' position='17.5 2.5 -18' rotation='0 130 0' movement-controls='' position-listener='' gamepad-controls='' trackpad-controls='' keyboard-controls='' touch-controls=''>
+               <a-entity camera id='player' position='0 0 0' look-controls='pointerLockEnabled: true'>
                   <a-cursor color='#FFF' position='0 0 -.5'></a-cursor>
                </a-entity>
-               <a-entity laser-controls oculus-touch-controls="hand: left"></a-entity>
-               <a-entity laser-controls oculus-touch-controls="hand: right"></a-entity>
+               <a-entity laser-controls raycaster='far: 2' oculus-touch-controls="hand: left"></a-entity>
+               <a-entity laser-controls raycaster='far: 2' oculus-touch-controls="hand: right"></a-entity>
             </a-entity>
          <!-- /Camera  -->
 
