@@ -189,13 +189,14 @@
 
       <!-- /Assets  -->
          <!-- Camera -->
-            <a-entity id='rig' position='17.5 2.5 -18' rotation='0 130 0' movement-controls='' position-listener='' gamepad-controls='' trackpad-controls='' keyboard-controls='' touch-controls=''>
+            <a-entity id='rig' position='17.5 1.6 -18' rotation='0 130 0' movement-controls='' position-listener='' gamepad-controls='' trackpad-controls='' keyboard-controls='' touch-controls=''>
                <a-entity camera id='player' position='0 0 0' look-controls='pointerLockEnabled: true'>
                   <a-cursor color='#FFF' position='0 0 -.5'></a-cursor>
                </a-entity>
-               <a-entity oculus-touch-controls="hand: left"></a-entity>
-               <a-entity oculus-touch-controls="hand: right"></a-entity>
+               
             </a-entity>
+            <a-entity oculus-touch-controls="hand: left"></a-entity>
+            <a-entity oculus-touch-controls="hand: right" x-button-listener></a-entity>
          <!-- /Camera  -->
 
          <!-- Environment -->
