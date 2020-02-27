@@ -178,23 +178,23 @@
          }
       });
    </script>
-   <a-scene physics='debug:true;' stats inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
+   <a-scene physics='debug:false;' stats>
       <!-- Assets -->
       <a-asset-item id='architecture' src='models/wizlib/scene.gltf'></a-asset-item>
       <a-asset-item id='monk' src='models/monk/scene.gltf'></a-asset-item>
-      <a-asset-item id='left' src='models/controller-left/scene.gltf'></a-asset-item>
-      <a-asset-item id='right' src='models/controller-right/scene.gltf'></a-asset-item>
+      <!-- <a-asset-item id='left' src='models/controller-left/scene.gltf'></a-asset-item>
+      <a-asset-item id='right' src='models/controller-right/scene.gltf'></a-asset-item> -->
 
 
 
       <!-- /Assets  -->
          <!-- Camera -->
-            <a-entity id='rig' position='17.5 1.6 -18' rotation='0 130 0' movement-controls='' position-listener='' gamepad-controls='' trackpad-controls='' keyboard-controls='' touch-controls=''>
-               <a-entity camera id='player' position='0 0 0' look-controls='pointerLockEnabled: true'>
+            <a-entity id='rig' position='17.5 0 -18' rotation='0 130 0' movement-controls='' position-listener='' gamepad-controls='' trackpad-controls='' keyboard-controls='' touch-controls=''>
+               <a-entity camera id='player' position='0 2.5 0' look-controls='pointerLockEnabled: true'>
                   <a-cursor color='#FFF' position='0 0 -.5'></a-cursor>
                </a-entity>
-               <a-entity oculus-touch-controls="hand: left"></a-entity>
-               <a-entity oculus-touch-controls="hand: right" x-button-listener></a-entity>
+               <!-- <a-entity oculus-touch-controls="hand: left"></a-entity>
+               <a-entity oculus-touch-controls="hand: right" x-button-listener></a-entity> -->
             </a-entity>
             
          <!-- /Camera  -->
