@@ -168,16 +168,26 @@
       <!-- Assets -->
       <a-asset-item id='architecture' src='models/wizlib/scene.gltf'></a-asset-item>
       <a-asset-item id='monk' src='models/monk/scene.gltf'></a-asset-item>
+      <a-asset-item id='left' src='models/controller-left/scene.gltf'></a-asset-item>
+      <a-asset-item id='right' src='models/controller-right/scene.gltf'></a-asset-item>
+
 
 
       <!-- /Assets  -->
          <!-- Camera -->
-         <a-entity id='rig' position='17.5 2.5 -18' rotation='0 135 0' look-controls wasd-controls universal-controls>
+         <a-entity 
+            id='rig' 
+            position='17.5 2.5 -18' 
+            rotation='0 135 0' 
+            look-controls 
+            universal-controls='movementControls: universal-gear-vr, keyboard;'
+            universal-gearvr-controls
+            oculus-touch-controls>
             <a-entity id='camera' camera>
                <a-cursor color='#FFF' position='0 0 -.5'></a-cursor>
-               <a-entity oculus-touch-controls='hand: left'></a-entity>
-               <a-entity oculus-touch-controls='hand: right'></a-entity>
             </a-entity>
+            <a-entity gltf-model='#left' oculus-touch-controls='hand: left' position='.25 -.15 -.5'></a-entity>
+            <a-entity gltf-model='#right' oculus-touch-controls='hand: right'position='-.25 -.15 -.5'></a-entity>
          </a-entity>
          <!-- <a-camera 
             id="player"
