@@ -16,79 +16,79 @@
 <body>
    <script>
       /* Recorder */
-      AFRAME.registerComponent('recorder', {
+      // AFRAME.registerComponent('recorder', {
          
-         init: function () {
-            var el = this.el;
-            var defaultColor = el.getAttribute('material').color;
-            var start = true;
-            const constraints = { audio: true };
-            var chunks = [];
+      //    init: function () {
+      //       var el = this.el;
+      //       var defaultColor = el.getAttribute('material').color;
+      //       var start = true;
+      //       const constraints = { audio: true };
+      //       var chunks = [];
 
-            var onSuccess = function(stream) {
-               const mediaRecorder = new mediaRecorder(stream);
+      //       var onSuccess = function(stream) {
+      //          const mediaRecorder = new mediaRecorder(stream);
 
-               el.addEventListener('click', function () {
-                  if (start) {
-                     mediaRecorder.start();
-                     el.setAttribute('color', 'green');
-                     start = false;
-                  } else {
-                     mediaRecorder.stop();
-                     el.setAttribute('color', defaultColor);
-                     start = true;
-                  }
-               });
+      //          el.addEventListener('click', function () {
+      //             if (start) {
+      //                mediaRecorder.start();
+      //                el.setAttribute('color', 'green');
+      //                start = false;
+      //             } else {
+      //                mediaRecorder.stop();
+      //                el.setAttribute('color', defaultColor);
+      //                start = true;
+      //             }
+      //          });
 
-               mediaRecorder.onstop = function(e) {
-                  var clip = document.createElement('a-entity');
-                  clip.setAttribute('geometry', 'primitive: box');
-                  clip.setAttribute('color', 'blue');
-                  clip.setAttribute('height', 0.5);
-                  clip.setAttribute('width', 0.5);
-                  clip.setAttribute('depth', 0.5);
-                  clip.setAttribute('position', position.x + ' ' + position.y + ' ' + (position.z - 0.5));
+      //          mediaRecorder.onstop = function(e) {
+      //             var clip = document.createElement('a-entity');
+      //             clip.setAttribute('geometry', 'primitive: box');
+      //             clip.setAttribute('color', 'blue');
+      //             clip.setAttribute('height', 0.5);
+      //             clip.setAttribute('width', 0.5);
+      //             clip.setAttribute('depth', 0.5);
+      //             clip.setAttribute('position', position.x + ' ' + position.y + ' ' + (position.z - 0.5));
                   
-                  var blob = new Blob(chunks, {'type' : 'audio/ogg; codecs=opus'});
-                  chunks = [];
-                  const audioURL = window.URL.createObjectURL(blob);
-                  clip.setAttribute('sound', 'src:' + audioURL);
-                  clip.setAttribute('play');
-                  document.querySelector('a-scene').appendChild(clip);
-               }
+      //             var blob = new Blob(chunks, {'type' : 'audio/ogg; codecs=opus'});
+      //             chunks = [];
+      //             const audioURL = window.URL.createObjectURL(blob);
+      //             clip.setAttribute('sound', 'src:' + audioURL);
+      //             clip.setAttribute('play');
+      //             document.querySelector('a-scene').appendChild(clip);
+      //          }
 
-               mediaRecorder.ondataavailable = function(e) {
-                  chunks.push(e.data);
-               }
+      //          mediaRecorder.ondataavailable = function(e) {
+      //             chunks.push(e.data);
+      //          }
 
-            } 
-         }
-      });
+      //       } 
+      //    }
+      // });
       /* Play */
-      AFRAME.registerComponent('play', {
-         init: function () {
-            var el = this.el;
-            var playing = false;
-            el.addEventListener('click', function () {
-               if (!playing) {
-                  el.playSound();
-                  playing = true;
-               } else {
-                  el.stopSound();
-                  playing = false;
-               }
-            });
-            el.addEventListener('triggerdown', function () {
-               if (!playing) {
-                  el.playSound();
-                  playing = true;
-               } else {
-                  el.stopSound();
-                  playing = false;
-               }
-            });
-         }
-      });
+      // AFRAME.registerComponent('play', {
+      //    init: function () {
+      //       var el = this.el;
+      //       var playing = false;
+      //       el.addEventListener('click', function () {
+      //          if (!playing) {
+      //             el.playSound();
+      //             playing = true;
+      //          } else {
+      //             el.stopSound();
+      //             playing = false;
+      //          }
+      //       });
+      //       el.addEventListener('triggerdown', function () {
+      //          if (!playing) {
+      //             el.playSound();
+      //             playing = true;
+      //          } else {
+      //             el.stopSound();
+      //             playing = false;
+      //          }
+      //       });
+      //    }
+      // });
       /* WebSpeech */
       const dialogue = {
          "introduction": "Welcome to the Ignatian Pedagogical Paradigm in VR. In this app you will go through the practice of Discernment. The goal of this process is to help you make better decisions. Click the blue sphere to begin.",
@@ -107,6 +107,11 @@
       };
 
       AFRAME.registerComponent('speaker', {
+         schema: {
+            text: {
+               default: ''
+            }
+         },
          
          init: function () {
             var data = this.data;
@@ -171,10 +176,10 @@
 
       <!-- /Assets  -->
          <!-- Camera -->
-            <a-entity id='rig' position='17.5 0 -18' rotation='0 130 0' look-controls movement-controls wasd-controls>
-               <a-camera id='player' position='0 2.5 0'>
+            <a-entity id='rig' position='17.5 0 -18' rotation='0 130 0' movement-controls='' position-listener='' gamepad-controls='' trackpad-controls='' keyboard-controls='' touch-controls=''>
+               <a-entity camera id='player' position='0 2.5 0' look-controls='pointerLockEnabled: true'>
                   <a-cursor color='#FFF' position='0 0 -.5'></a-cursor>
-               </a-camera>
+               </a-entity>
                <a-entity oculus-touch-controls="hand: left"></a-entity>
                <a-entity oculus-touch-controls="hand: right"></a-entity>
             </a-entity>
