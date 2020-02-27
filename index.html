@@ -168,6 +168,15 @@
             });
          }
       });
+
+      AFRAME.registerComponent('x-button-listener', {
+         init: function() {
+            let el = this.el;
+            el.addEventListener('xbuttondown', function (evt) {
+               el.setAttribute('visible', !el.getAttribute('visible'));
+            });
+         }
+      });
    </script>
    <a-scene physics='debug:true;' stats inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
       <!-- Assets -->
@@ -184,8 +193,8 @@
                <a-entity camera id='player' position='0 0 0' look-controls='pointerLockEnabled: true'>
                   <a-cursor color='#FFF' position='0 0 -.5'></a-cursor>
                </a-entity>
-               <a-entity laser-controls raycaster='far: 2' oculus-touch-controls="hand: left"></a-entity>
-               <a-entity laser-controls raycaster='far: 2' oculus-touch-controls="hand: right"></a-entity>
+               <a-entity oculus-touch-controls="hand: left"></a-entity>
+               <a-entity oculus-touch-controls="hand: right"></a-entity>
             </a-entity>
          <!-- /Camera  -->
 
@@ -199,7 +208,7 @@
          <!-- /Monk -->
 
          <!-- Enter -->
-         <a-sphere position='14.5 2.5 -15' color='blue' radius=.5 elevator='position: 14 0 -10'></a-sphere>
+         <a-sphere position='14.5 2.5 -15' color='blue' radius=.5 elevator='position: 14 0 -10' x-button-listener></a-sphere>
          <!-- /Enter -->
 
          <!-- Stair Controls -->
