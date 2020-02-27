@@ -76,11 +76,20 @@
                   playing = false;
                }
             });
+            el.addEventListener('triggerdown', function () {
+               if (!playing) {
+                  el.playSound();
+                  playing = true;
+               } else {
+                  el.stopSound();
+                  playing = false;
+               }
+            });
          }
       });
       /* WebSpeech */
       const dialogue = {
-         "introduction": "Welcome to the Ignatian Pedagogical Paradigm in VR. In this app you will go through the practice of Discernment. The goal of this process is to help you make better decisions. Click the green sphere to begin.",
+         "introduction": "Welcome to the Ignatian Pedagogical Paradigm in VR. In this app you will go through the practice of Discernment. The goal of this process is to help you make better decisions. Click the blue sphere to begin.",
          "greeting": "Well met! I am Virgil 9000, and I will be guiding you through this experience today. As you answer the questions, I will record the answers. Click the green ball in the center to start recording. You can read them by clicking on the silver ball controller to your left.",
          "prayers": [
             "God of silence and God of all sound, help me listen. Help me to do the deep listening to the sounds of my soul, waiting to hear your soft voice calling me deeper into you. Give me attentive ears that begin to separate the noise from the sounds that are you; you who have been speaking to me and through me my whole life, for so long that you can seem like background noise. Today help me hear you anew",
@@ -166,6 +175,8 @@
          <a-entity id='rig' position='17.5 2.5 -18' rotation='0 135 0' look-controls wasd-controls universal-controls>
             <a-entity id='camera' camera>
                <a-cursor color='#FFF' position='0 0 -.5'></a-cursor>
+               <a-entity oculus-touch-controls='hand: left'></a-entity>
+               <a-entity oculus-touch-controls='hand: right'></a-entity>
             </a-entity>
          </a-entity>
          <!-- <a-camera 
