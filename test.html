@@ -12,6 +12,19 @@
    <title>Document</title>
 </head>
 <body>
+   <script>
+      AFRAME.registerComponent('record', {
+         schema: { type: 'string', default: 'recording.wav' },
+         
+         init: function () {
+            this.el.addEventListener('start', this.start.bind(this));
+            this.el.addEventListener('stop', this.stop.bind(this));
+
+         },
+
+         
+      })
+   </script>
    <a-scene physics='debug:true;' stats>
       <!-- Camera -->
       <a-camera 
